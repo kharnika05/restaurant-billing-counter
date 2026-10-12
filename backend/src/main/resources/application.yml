@@ -1,0 +1,65 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: restaurant-billing-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/restaurant_billing_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      pool-name: RestaurantHikariPool
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:4c653066373831653433613264626135383930313233343536373839616263646566303132333435}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}
+  restaurant:
+    name: ${APP_RESTAURANT_NAME:Royal Feast Dine & Lounge}
+    address: ${APP_RESTAURANT_ADDRESS:42 Gourmet Boulevard, Culinary Quarter, Bengaluru}
+    phone: ${APP_RESTAURANT_PHONE:+91 98765 43210}
+    email: ${APP_RESTAURANT_EMAIL:contact@royalfeast.com}
+    gst-number: ${APP_RESTAURANT_GST:29AABCU9603R1ZM}
+    currency-symbol: ${APP_CURRENCY_SYMBOL:₹}
+    default-tax-rate: ${APP_DEFAULT_TAX_RATE:5.0} # 5% GST (2.5% CGST + 2.5% SGST)
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: method
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
