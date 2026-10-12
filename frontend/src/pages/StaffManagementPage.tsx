@@ -5,13 +5,8 @@ import Badge from '../components/Badge';
 import {
   ShieldCheck,
   Plus,
-  UserCheck,
-  UserX,
-  Phone,
-  Mail,
   CheckCircle,
-  AlertCircle,
-  Key
+  AlertCircle
 } from 'lucide-react';
 
 export const StaffManagementPage: React.FC = () => {
