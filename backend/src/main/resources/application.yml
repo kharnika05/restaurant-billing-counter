@@ -40,7 +40,7 @@ app:
     secret: ${JWT_SECRET:4c653066373831653433613264626135383930313233343536373839616263646566303132333435}
     expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
   cors:
-    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://*.vercel.app}
   restaurant:
     name: ${APP_RESTAURANT_NAME:Royal Feast Dine & Lounge}
     address: ${APP_RESTAURANT_ADDRESS:42 Gourmet Boulevard, Culinary Quarter, Bengaluru}
